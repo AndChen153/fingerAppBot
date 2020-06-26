@@ -33,7 +33,6 @@ def contour(image):
                         (0,0,0),2)
 
 
-
 while True:
     frameCounter +=1
     if cap.get(cv2.CAP_PROP_FRAME_COUNT) ==frameCounter:

@@ -1,16 +1,15 @@
 import cv2
-import numpy as np
  
 img = cv2.imread("pics/picture.PNG")
-print(img.shape)
+print(img.shape) # prints size of image
  
-imgResize = cv2.resize(img,(1000,500))
+imgResize = cv2.resize(img,(1000,200)) # width,height
 print(imgResize.shape)
  
-imgCropped = img[0:200,200:500]
+imgCropped = img[0:200,0:500] # height:width, (height value 0 starts at the top)
  
 cv2.imshow("Image",img)
-#cv2.imshow("Image Resize",imgResize)
+cv2.imshow("Image Resize",imgResize)
 cv2.imshow("Image Cropped",imgCropped)
  
 cv2.waitKey(0)

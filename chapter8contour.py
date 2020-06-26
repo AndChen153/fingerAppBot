@@ -34,24 +34,6 @@ def contour(image):
 
 
 
-
-'''path = "pics/picture.PNG"
-img = cv2.imread(path)
-img = cv2.resize(img,(506,900))
-img = img[283:900,0:506]
-imgContour = img.copy()
-
-print(img.shape)
-imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-imgBlur = cv2.GaussianBlur(imgGray,(5,5),1)
-imgCanny = cv2.Canny(imgBlur,490,270)
-contour(imgCanny)
-
-#cv2.imshow("original", img)
-cv2.imshow("canny", imgCanny)
-cv2.imshow("contour", imgContour)
-cv2.waitKey(0)'''
-
 while True:
     frameCounter +=1
     if cap.get(cv2.CAP_PROP_FRAME_COUNT) ==frameCounter:
@@ -76,3 +58,23 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+
+'''path = "pics/picture.PNG"
+img = cv2.imread(path)
+img = cv2.resize(img,(506,900))
+img = img[283:900,0:506]
+imgContour = img.copy()
+
+print(img.shape)
+imgGray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+imgBlur = cv2.GaussianBlur(imgGray,(5,5),1)
+imgCanny = cv2.Canny(imgBlur,490,270)
+contour(imgCanny)
+
+#cv2.imshow("original", img)
+cv2.imshow("canny", imgCanny)
+cv2.imshow("contour", imgContour)
+cv2.waitKey(0)'''

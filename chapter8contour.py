@@ -1,6 +1,7 @@
 import cv2
 import numpy as np 
 
+#identifies numbers from fingerontheapp by using contours
 
 frameWidth = 1536
 frameHeight = 864

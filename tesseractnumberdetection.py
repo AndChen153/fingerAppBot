@@ -2,6 +2,7 @@
 # https://www.youtube.com/watch?v=6DjFscX4I_c&t=63s
 
 # this does not work with fingerontheapp, the numbers that are shown are not recognized by tesseract
+# works with other text though, just not the app
 
 import cv2
 import numpy as np

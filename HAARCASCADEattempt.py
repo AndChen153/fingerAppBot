@@ -16,6 +16,7 @@ import cv2
 import math
 import keyboard
 import time
+import statistics 
 
 ################################################################
 path = 'haarcascades/fingerappcascade.xml'  # cascade path
@@ -30,6 +31,14 @@ color= (0,255,255)                 # color space in BGR
 cap = cv2.VideoCapture(cameraNo)
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
+
+numCount = 0
+xValues = []
+yValues = []
+runningX = 0
+runningX2 = 0
+runningY = 0
+runningY2 = 0
  
 def empty(a):
     pass
@@ -37,9 +46,16 @@ def empty(a):
 def roundup(x):
     return int(math.ceil(x / 10.0)) * 10
 
-def sendData():
-    keyboard.write(str(moveToX) + " " + str(moveToY))
+def sendData(x, y):
+    keyboard.write(str(x) + " " + str(y))
     keyboard.send("enter")
+
+def compare(first, second):
+    comp = abs(first-second)
+    if comp > 20:
+        return True
+    else:
+        return False
  
 # create the trackbar
 cv2.namedWindow("Result")
@@ -77,8 +93,17 @@ while True:
             cv2.putText(img,objectName,(x,y-5),cv2.FONT_HERSHEY_COMPLEX_SMALL,1,color,2)
             roi_color = img[y:y+h, x:x+w]
             moveToX,moveToY = (roundup(x+w/2),roundup(y+h/2))
-            sendData()
-            time.sleep(3)
+            cv2.rectangle(img,(moveToX-2,moveToY-2),(moveToX+2,moveToY+2),color,3)
+            
+            runningX, runningY = runningX2, runningY2
+            runningX2 = moveToX
+            runningY2 = moveToY
+            print(runningX, runningX2, runningY, runningY2)
+            if compare(runningX,runningX2) or compare(runningY,runningY2):
+                sendData(runningX2,runningY2)
+                strs = "SEND"
+                print(strs, runningX, runningX2, runningY, runningY2)
+
 
     
  

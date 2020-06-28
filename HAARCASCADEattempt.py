@@ -60,7 +60,7 @@ while True:
 
     # Get image from camera and convert to greyscale
     success, img = cap.read()
-    img = img[305:830,555:986] # height:width, (height value 0 starts at the top)220 120220 120
+    img = img[305:830,555:985] # height:width, (height value 0 starts at the top)220 120220 120
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Detect the objects

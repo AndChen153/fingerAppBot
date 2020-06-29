@@ -1,8 +1,10 @@
 # using cascade trainer gui to generate the cascade files
 # https://amin-ahmadi.com/cascade-trainer-gui/  (download at bottom of page)
 # https://www.youtube.com/watch?v=dZ4itBvIjVY
+# https://www.murtazahassan.com/custom-object-detection/
 
 # use Open Broadcasting Software along with OBS virtual cam to export screencapture of zoom screenshare (from iphone running fingerontheapp) as a virtual webcam
+# https://obsproject.com/forum/resources/obs-virtualcam.949/
 # image bounds taken from 2/3 of a 1080p virtual webcam stream
 
 # keyboard for typing https://pypi.org/project/keyboard/
@@ -10,7 +12,7 @@
 # useful links for encoutered bugs:
 # https://amin-ahmadi.com/2017/07/26/how-to-get-past-the-infamous-insufficient-count-of-samples-error-in-opencv-cascade-training/
 
-# if you get an error saying that cascade can't rename a photo move the folder containing all positive and negative images to desktop
+# if you get an error saying that cascade can't rename a photo move the folder containing all positive and negative images to desktop and keep trying until it fully renames all images
 
 import cv2
 import math
@@ -19,7 +21,7 @@ import time
 import statistics 
 
 ################################################################
-path = 'haarcascades/fingerappcascade.xml'  # cascade path
+path = 'haarcascades/fingerappcascadeV2.xml'  # cascade path, V2 works the best
 cameraNo = 0                       # camera number
 objectName = 'Move Finger Here'       # bounding box label
 frameWidth= 1536                     # display width
@@ -27,18 +29,12 @@ frameHeight = 864                  # display height
 color= (0,255,255)                 # color space in BGR
 #################################################################
  
- 
 cap = cv2.VideoCapture(cameraNo)
 cap.set(3, frameWidth)
 cap.set(4, frameHeight)
 
-numCount = 0
-xValues = []
-yValues = []
-runningX = 0
-runningX2 = 0
-runningY = 0
-runningY2 = 0
+iterable = 60
+strs = "SEND"
  
 def empty(a):
     pass
@@ -52,7 +48,7 @@ def sendData(x, y):
 
 def compare(first, second):
     comp = abs(first-second)
-    if comp > 20:
+    if comp > 40:
         return True
     else:
         return False
@@ -60,11 +56,11 @@ def compare(first, second):
 # create the trackbar
 cv2.namedWindow("Result")
 cv2.resizeWindow("Result",frameWidth,frameHeight+100)
-cv2.createTrackbar("Scale","Result",5,1000,empty)
-cv2.createTrackbar("Neig","Result",8,50,empty)
+cv2.createTrackbar("Scale","Result",7,1000,empty)
+cv2.createTrackbar("Neig","Result",30,50,empty)
 cv2.createTrackbar("Min Area","Result",20700,100000,empty)
 cv2.createTrackbar("Brightness","Result",180,255,empty)
-# 5 10 20700 180
+# 7 30 24700 180
  
 # Load the classifier
 cascade = cv2.CascadeClassifier(path)
@@ -76,7 +72,7 @@ while True:
 
     # Get image from camera and convert to greyscale
     success, img = cap.read()
-    img = img[305:830,555:985] # height:width, (height value 0 starts at the top)220 120220 120
+    img = img[305:830,505:1035] # height:width, (height value 0 starts at the top)220 120220 120
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # Detect the objects
@@ -94,15 +90,16 @@ while True:
             roi_color = img[y:y+h, x:x+w]
             moveToX,moveToY = (roundup(x+w/2),roundup(y+h/2))
             cv2.rectangle(img,(moveToX-2,moveToY-2),(moveToX+2,moveToY+2),color,3)
+
+
+            if iterable > 50:
+                sendData(moveToX, moveToY)
+                print(moveToX, moveToY)
+                iterable = 0
+        
+    iterable += 1
+    #print(iterable)
             
-            runningX, runningY = runningX2, runningY2
-            runningX2 = moveToX
-            runningY2 = moveToY
-            print(runningX, runningX2, runningY, runningY2)
-            if compare(runningX,runningX2) or compare(runningY,runningY2):
-                sendData(runningX2,runningY2)
-                strs = "SEND"
-                print(strs, runningX, runningX2, runningY, runningY2)
 
 
     

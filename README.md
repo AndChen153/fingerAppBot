@@ -7,7 +7,9 @@ I tried finding contours, using the tesseract library, and finally decided on us
 
 ### Results
 Video of my project working in the practice mode of the app with a side by side view of the phone and the laptop screen: https://www.youtube.com/watch?v=xRqSazZKHoc&feature=youtu.be
+
 Extended video of just the phone: https://www.youtube.com/watch?v=EAtvmaOwU-I&feature=youtu.be
+
 Extended video of Haar Cascade program with a screen recording of me playing the app: https://www.youtube.com/watch?v=kAcWppZJqxM&feature=youtu.be
 
 Unfortunately I was kicked as soon as the challenge started because of two possible reasons. Before the start of the challenge I was still testing my program in the practice mode, and the app removed me from practice mode and placed me into a waiting room for the actual challenge to start. During the transition into the waiting room I did not remove the pen and put it back on for the app to detect a new touch so the app may not have thought I was "touching" the screen. Another possible reason was that Mr. Beast's bot detection method was to look at the time spent in the practice mode and the movemen patterns during that time. I spent 10-15 hours in the practice mode testing my program and that probably raised a red flag and caused my removal from the challenge.

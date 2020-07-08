@@ -1,5 +1,5 @@
 # FingerApp Bot
-Disclaimer: Mr Beast announced his challenge a week before it started and I learned how to use opencv and wrote all of this code within 7 days so I know it is kind of sloppy.
+Mr Beast announced his challenge a week before it started and I learned how to use opencv and wrote all of this code within 7 days so I know it is kind of sloppy.
 
 This is my attempt make a bot to beat the Mr. Beast FingerOnTheApp challenge by attaching a touchscreen stylus onto my automated chessboard. The code used to move the pen arround is located in https://github.com/AndChen153/ChessBoard/tree/master/fingerontheapp. I ssh'd into the raspberry pi and inputed the positioning data of the buttons to press using the python library keyboard. I felt that this was the quicker way to transmit the data versus creating a server with the raspberry pi and my laptop.
 

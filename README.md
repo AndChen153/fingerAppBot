@@ -6,7 +6,7 @@ This is my attempt make a bot to beat the Mr. Beast FingerOnTheApp challenge by 
 I tried finding contours, using the tesseract library, and finally decided on using Haar Cascade deep learning after following this opencv tutorial: https://www.youtube.com/watch?v=WQeoO7MI0Bs.
 
 ### Results
-Video of my project working in the practice mode of the app with a side by side view of the phone and the laptop screen: https://www.youtube.com/watch?v=xRqSazZKHoc&feature=youtu.be
+Video of my project working in the practice mode of the app with a side by side view of the phone and the laptop screen (This was not the finished version I forgot to take video of the finished version before the challenge started-the practice mode closed after the challenge started): https://www.youtube.com/watch?v=xRqSazZKHoc&feature=youtu.be
 
 Extended video of just the phone: https://www.youtube.com/watch?v=EAtvmaOwU-I&feature=youtu.be
 
